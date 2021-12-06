@@ -12,7 +12,7 @@ namespace Module3HW1
         private T[] _array = new T[4];
         private int _count = 0;
 
-        public int Count()
+        public int GetCount()
         {
             return _count;
         }
@@ -36,10 +36,9 @@ namespace Module3HW1
                 {
                     Array.Resize(ref _array, _array.Length * 2);
                 }
-
-                if (_count + items.Length <= _array.Length)
+                else
                 {
-                    Array.Copy(items, _array, items.Length);
+                    Array.Copy(items, 0, _array, _count, items.Length);
                     _count += items.Length;
                     break;
                 }
@@ -91,18 +90,6 @@ namespace Module3HW1
             }
 
             Array.Sort(array);
-            Array.Copy(array, _array, _count);
-        }
-
-        public void Sort(IComparer comparer)
-        {
-            T[] array = new T[_count];
-            for (var i = 0; i < _count; i++)
-            {
-                array[i] = _array[i];
-            }
-
-            Array.Sort(array, comparer);
             Array.Copy(array, _array, _count);
         }
 
